@@ -811,6 +811,15 @@ function bindSelectionHandler(element, i) {
   function getRangeNode() {
     var selection = window.getSelection ? window.getSelection() :
                     document.getSelection ? document.getSelection() : '';
+    if (
+      !selection.toString().length
+      && document.activeElement
+      && document.activeElement.selectionStart < document.activeElement.selectionEnd
+    ) {
+      selection = {
+        anchorNode: document.activeElement,
+      };
+    }
     if (selection.toString().length === 0) {
       return null;
     } else {
