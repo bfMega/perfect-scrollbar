@@ -866,7 +866,7 @@ function bindSelectionHandler(element, i) {
   var isSelected = false;
   var isClicked = false;
     i.event.bind(i.ownerDocument, 'selectionchange', function() {
-        if (element.classList.contains("ps-disabled") || !isClicked) {
+        if (!isClicked || element.classList.contains("ps-disabled")) {
             return;
         }
     if (element.contains(getRangeNode())) {
